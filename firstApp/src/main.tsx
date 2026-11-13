@@ -1,23 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { RouterProvider } from 'react-router/dom'
 import './index.css'
-import App from './App.tsx'
-import {AuthProvider} from "./contexts/AuthProvider.tsx";
-import {ThemeProvider} from "./contexts/ThemeProvider.tsx";
-import {LanguageProvider} from "./contexts/LanguageProvider.tsx";
-import {CoursesProvider} from "./contexts/CoursesProvider.tsx";
+import { router } from './App.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-      <AuthProvider>
-          <ThemeProvider>
-              <LanguageProvider>
-                  <CoursesProvider>
-                      <App />
-                  </CoursesProvider>
-              </LanguageProvider>
-          </ThemeProvider>
-      </AuthProvider>
+    <RouterProvider router={router} />
   </StrictMode>,
 )

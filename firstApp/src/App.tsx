@@ -1,19 +1,23 @@
-import './App.css'
-import Header from "./Components/Header.tsx";
-import LoginForm from "./Components/LoginForm.tsx";
-import CourseList from "./Components/CourseList.tsx";
+import { createBrowserRouter, Navigate } from "react-router";
+import MainLayout from "./Components/MainLayout.tsx";
+import PatientLayout from "./Components/PatientLayout.tsx";
+import Doctors from "./Components/Doctors.tsx";
+import DoctorDetails from "./Components/DoctorDetails.tsx";
 
-
-
-function App() {
-
-    return (
-        <>
-            <Header></Header>
-            <LoginForm></LoginForm>
-            <CourseList></CourseList>
-        </>
-  )
-}
-
-export default App
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    Component: MainLayout,
+    children: [
+      { index: true, element: <Navigate to="/doctors" replace /> },
+      {
+        path: "doctors",
+        Component: PatientLayout,
+        children: [
+          { index: true, Component: Doctors },
+          { path: ":doctorId", Component: DoctorDetails },
+        ],
+      },
+    ],
+  },
+]);
